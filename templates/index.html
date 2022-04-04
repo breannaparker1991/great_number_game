@@ -8,13 +8,28 @@
   <title>Great Number Game</title>
 </head>
 <body>
-  <h1>Welcome to the Great Number Game!!!</h1>
-  <p>I am thinking of a number between 1 and 100</p>
+  <div class="container justify-center">
+    <h1>Welcome to the Great Number Game!!!</h1>
+    <p>I am thinking of a number between 1 and 100</p>
+   
+    <form action="/guess" class="container bg-secondary p-4 rounded" style="width: 250px" method="POST">
+      <div class="form-group">
+        <label for="guess" class="text-warning">Take a guess!!!</label>
+        <input type="text" name="guess">
+        <button class="btn btn-warning">Guess</button>
+        <a href="/reset"><button class="btn btn-danger">Play Again </button></a>
+      </div>
+    </form>
+    {% if 'guess' in session: %}
+      {% if session['guess'] < session['number'] %}
+        <h2 class="card bg-warning">Too Low!!!</h2>
+      {% elif session['guess'] > session['number'] %}
+        <h2 class="card bg-danger">Too High!!!</h2>
+      {% else %}
+        <h2 class="card bg-success">You got the number!</h2>
+      {% endif %}
+    {% endif %}
 
-  <div class="box">
-    <p>Take a guess!!!</p>
-    <form action="text"></form>
-    <button class="btn-success">Guess</button>
   </div>
 </body>
 </html>
