@@ -21,13 +21,35 @@
       </div>
     </form>
     {% if 'guess' in session: %}
+    {% if session['guess'] == session['num'] %}
+        <div class="card bg-success">
+            <h2>You got the number!</h2>
+            <a href="/reset" class="btn btn-primary">Play Again</a>
+        </div>
+    {% elif session['guess'] < session['num'] %}
+        <div class="card bg-danger">
+            <h2>Too Low!!!</h2>
+            
+        </div>
+    {% else %}
+        <div class="card bg-danger">
+            <h2>Too High!!!</h2>
+        </div>
+    {% endif %}
+{% endif %}
+    {% if 'guess' in session: %}
+      
       {% if session['guess'] < session['number'] %}
         <h2 class="card bg-warning">Too Low!!!</h2>
+      
       {% elif session['guess'] > session['number'] %}
         <h2 class="card bg-danger">Too High!!!</h2>
+      
       {% else %}
         <h2 class="card bg-success">You got the number!</h2>
+      
       {% endif %}
+    
     {% endif %}
 
   </div>
